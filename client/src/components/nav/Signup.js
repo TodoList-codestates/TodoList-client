@@ -32,7 +32,7 @@ const Labelname = styled.label.attrs({
 
 const Inputname = styled.input.attrs({
   type: "text",
-  placeholder: "이름을 입력하세요",
+  placeholder: "이름을 입력해주세요",
 })`
   border-bottom: 1px solid black;
   font-size: 15px;

@@ -15,6 +15,7 @@ const Welcome = styled.div`
   font-weight: bold;
   font-size: 25px;
   padding: 5.5px 10px;
+  line-height: 1.5;
 `;
 const UserBtn = styled.a`
   color: black;
@@ -22,6 +23,7 @@ const UserBtn = styled.a`
   float: right;
   font-weight: bold;
   font-size: 25px;
+  line-height: 1.5;
   :hover {
     color: rgba(40, 152, 0);
   }
