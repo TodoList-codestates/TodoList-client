@@ -4,9 +4,9 @@ import styled from "styled-components";
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 2vh;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 2vh;
 `;
 
 const Title = styled.h1`
@@ -21,7 +21,8 @@ const FormInput = styled.div`
 `;
 
 const Span = styled.span`
-  display: none;
+  font-size: 13px;
+  color: red;
 `;
 
 const Labelname = styled.label.attrs({
@@ -31,6 +32,8 @@ const Labelname = styled.label.attrs({
 `;
 
 const Inputname = styled.input.attrs({
+  name: "inputname",
+  id: "name",
   type: "text",
   placeholder: "이름을 입력해주세요",
 })`
@@ -45,6 +48,8 @@ const Labelemail = styled.label.attrs({
 `;
 
 const Inputemail = styled.input.attrs({
+  name: "inputemail",
+  id: "email",
   type: "email",
   placeholder: "e-mail을 입력해주세요",
 })`
@@ -59,6 +64,24 @@ const Labelpassword = styled.label.attrs({
 `;
 
 const Inputpassword = styled.input.attrs({
+  id: "password",
+  name: "inputpassword",
+  type: "password",
+  placeholder: "password을 입력해주세요",
+})`
+  border-bottom: 1px solid black;
+  font-size: 15px;
+`;
+
+const Labelpasswordcheck = styled.label.attrs({
+  for: "passwordcheck",
+})`
+  font-size: 20px;
+`;
+
+const Inputpasswordcheck = styled.input.attrs({
+  id: "passwordcheck",
+  name: "inputpasswordcheck",
   type: "password",
   placeholder: "password을 입력해주세요",
 })`
@@ -79,33 +102,39 @@ const Button = styled.button`
   }
 `;
 
-const signup = () => (
+const SignupPresenter = ({
+  handleChange,
+  checkMessageName,
+  checkMessageEmail,
+  checkMessagePassword,
+  checkMessagePasswordcheck,
+}) => (
   <Wrap>
     <Title>Signup</Title>
     <Form>
       <FormInput>
-        <Labelname onClick={() => alert("clicked")}>name : </Labelname>
-        <Inputname />
-        <Span></Span>
+        <Labelname>name : </Labelname>
+        <Inputname onChange={handleChange} />
+        <Span>{checkMessageName}</Span>
       </FormInput>
       <FormInput>
         <Labelemail>E-mail : </Labelemail>
-        <Inputemail />
-        <Span></Span>
+        <Inputemail onChange={handleChange} />
+        <Span>{checkMessageEmail}</Span>
       </FormInput>
       <FormInput>
         <Labelpassword>Password : </Labelpassword>
-        <Inputpassword />
-        <Span></Span>
+        <Inputpassword onChange={handleChange} />
+        <Span>{checkMessagePassword}</Span>
       </FormInput>
       <FormInput>
-        <Labelpassword>Password 확인 : </Labelpassword>
-        <Inputpassword />
-        <Span></Span>
+        <Labelpasswordcheck>Password 확인 : </Labelpasswordcheck>
+        <Inputpasswordcheck onChange={handleChange} />
+        <Span>{checkMessagePasswordcheck}</Span>
       </FormInput>
       <Button>Send</Button>
     </Form>
   </Wrap>
 );
 
-export default signup;
+export default SignupPresenter;
