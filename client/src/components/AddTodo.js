@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { todoApi } from "../api";
 
@@ -42,15 +42,15 @@ const TimeLabel = styled.label`
 `;
 
 const TimeInput = styled.input.attrs({
-   type: "time",
-   name: 'timeInput'
-  })`
+  type: "time",
+  name: "timeInput",
+})`
   border-bottom: 1px solid black;
   width: 70%;
 `;
 
 const TitleInput = styled.input.attrs({
-  name: 'titleInput'
+  name: "titleInput",
 })`
   border-bottom: 1px solid black;
   width: 70%;
@@ -60,7 +60,7 @@ const TextLabel = styled.p`
 `;
 
 const Textarea = styled.textarea.attrs({
-  name: 'contentInput'
+  name: "contentInput",
 })`
   min-width: 100%;
   min-height: 180px;
@@ -82,49 +82,47 @@ const SendBtn = styled.button`
   }
 `;
 
-const AddTodo = ({ handleTodoModal,updateTodoData }) => {
-  
-const [timeInput, setTimeInput] = useState('')
-const [titleInput, setTitleInput]  = useState('')
-const [contentInput, setContentInput]  = useState('')
+const AddTodo = ({ handleTodoModal, updateTodoData }) => {
+  const [timeInput, setTimeInput] = useState("");
+  const [titleInput, setTitleInput] = useState("");
+  const [contentInput, setContentInput] = useState("");
 
   return (
-  <Container>
-    <Header>
-      <Title>일정 추가</Title>
-      <CancelBtn onClick={handleTodoModal}>X</CancelBtn>
-    </Header>
-    <Form>
-      <Section>
-        <TitleLabel>Title : </TitleLabel>
-        <TitleInput
-          onChange={e => setTitleInput(e.target.value)}
-        ></TitleInput>
-      </Section>
-      <Section>
-        <TimeLabel>Time : </TimeLabel>
-        <TimeInput
-          onChange={e => setTimeInput(e.target.value)}
-        ></TimeInput>
-      </Section>
-      <Section>
-        <TextLabel>Content</TextLabel>
-        <Textarea
-          onChange={e => setContentInput(e.target.value)}
-        ></Textarea>
-      </Section>
-      <SendBtn
-        onClick={async (e) => {
-          e.preventDefault();
-          await todoApi.createOne(titleInput,contentInput,timeInput)
-          await updateTodoData();
-          handleTodoModal();
-        }}
-      >
-        Send
-      </SendBtn>
-    </Form>
-  </Container>
-)};
+    <Container>
+      <Header>
+        <Title>일정 추가</Title>
+        <CancelBtn onClick={handleTodoModal}>X</CancelBtn>
+      </Header>
+      <Form>
+        <Section>
+          <TitleLabel>Title : </TitleLabel>
+          <TitleInput
+            onChange={(e) => setTitleInput(e.target.value)}
+          ></TitleInput>
+        </Section>
+        <Section>
+          <TimeLabel>Time : </TimeLabel>
+          <TimeInput onChange={(e) => setTimeInput(e.target.value)}></TimeInput>
+        </Section>
+        <Section>
+          <TextLabel>Content</TextLabel>
+          <Textarea
+            onChange={(e) => setContentInput(e.target.value)}
+          ></Textarea>
+        </Section>
+        <SendBtn
+          onClick={async (e) => {
+            e.preventDefault();
+            await todoApi.createOne(titleInput, contentInput, timeInput);
+            await updateTodoData();
+            handleTodoModal();
+          }}
+        >
+          Send
+        </SendBtn>
+      </Form>
+    </Container>
+  );
+};
 
 export default AddTodo;

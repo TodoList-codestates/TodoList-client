@@ -61,81 +61,83 @@ const TodoPresenter = ({
   updatetitle,
   updatetime,
   updatebody,
-  updateTodoData
+  updateTodoData,
 }) => (
-    <Container>
-      {isLogin ? (
-        // 로그인 후
-        todoList ? (
-          // 데이터를 받아온 경우
-          <>
-            {addTodoModal ? (
-              <MainTodoView></MainTodoView>
-            ) : (
-                <>
-                  <Clock />
-                  <ToDoTitle>
-                    ☑ TODO LIST
-                <TodoAddBtnSection>
-                      <TodoAddBtn
-                        handleClearAll={handleClearAll}
-                        handleTodoModal={handleTodoModal}
-                      />
-                    </TodoAddBtnSection>
-                  </ToDoTitle>
-                  <TodoList>
-                    {todoList.map((item) => (
-                      <Todo
-                        handleUpdateTitle={handleUpdateTitle}
-                        handleUpdateTime={handleUpdateTime}
-                        handleUpdateBody={handleUpdateBody}
-                        handleClearOne={handleClearOne}
-                        updatetitle={updatetitle}
-                        updatetime={updatetime}
-                        updatebody={updatebody}
-                        key={item.id}
-                        data={item}
-                        UpdateTodoList={UpdateTodoList}
-                      />
-                    ))}
-                  </TodoList>
-                </>
-              )}
-            {addTodoModal ? (
-              <ModalSection>
-                <AddTodo
-                  updateTodoData={updateTodoData}
-                  handleTodoModal={handleTodoModal} />
-              </ModalSection>
-            ) : (
-                <></>
-              )}
-          </>
-        ) : (
-            // 데이터가 없는 경우
+  <Container>
+    {isLogin ? (
+      // 로그인 후
+      todoList ? (
+        // 데이터를 받아온 경우
+        <>
+          {addTodoModal ? (
+            <MainTodoView></MainTodoView>
+          ) : (
             <>
               <Clock />
               <ToDoTitle>
                 ☑ TODO LIST
-            <TodoAddBtnSection>
+                <TodoAddBtnSection>
                   <TodoAddBtn
                     handleClearAll={handleClearAll}
                     handleTodoModal={handleTodoModal}
                   />
                 </TodoAddBtnSection>
               </ToDoTitle>
-              <Icon>
-                <FontAwesomeIcon icon={faSpinner} pulse size={"5x"} />
-              </Icon>
+              <TodoList>
+                {todoList.map((item) => (
+                  <Todo
+                    updateTodoData={updateTodoData}
+                    handleUpdateTitle={handleUpdateTitle}
+                    handleUpdateTime={handleUpdateTime}
+                    handleUpdateBody={handleUpdateBody}
+                    handleClearOne={handleClearOne}
+                    updatetitle={updatetitle}
+                    updatetime={updatetime}
+                    updatebody={updatebody}
+                    key={item.id}
+                    data={item}
+                    UpdateTodoList={UpdateTodoList}
+                  />
+                ))}
+              </TodoList>
             </>
-          )
+          )}
+          {addTodoModal ? (
+            <ModalSection>
+              <AddTodo
+                updateTodoData={updateTodoData}
+                handleTodoModal={handleTodoModal}
+              />
+            </ModalSection>
+          ) : (
+            <></>
+          )}
+        </>
       ) : (
-          // 로그인전
-          <>
-            <Clock />
-            <BeforeLogin>Welcom ToDoList</BeforeLogin>
-          </>
-        )}
-    </Container>
-  );
+        // 데이터가 없는 경우
+        <>
+          <Clock />
+          <ToDoTitle>
+            ☑ TODO LIST
+            <TodoAddBtnSection>
+              <TodoAddBtn
+                handleClearAll={handleClearAll}
+                handleTodoModal={handleTodoModal}
+              />
+            </TodoAddBtnSection>
+          </ToDoTitle>
+          <Icon>
+            <FontAwesomeIcon icon={faSpinner} pulse size={"5x"} />
+          </Icon>
+        </>
+      )
+    ) : (
+      // 로그인전
+      <>
+        <Clock />
+        <BeforeLogin>Welcome ToDoList</BeforeLogin>
+      </>
+    )}
+  </Container>
+);
 export default TodoPresenter;

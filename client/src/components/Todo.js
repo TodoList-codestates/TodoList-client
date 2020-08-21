@@ -54,6 +54,7 @@ const Div = styled.div`
 
 const Todo = ({
   data,
+  updateTodoData,
   UpdateTodoList,
   handleUpdateTitle,
   handleUpdateTime,
@@ -87,7 +88,10 @@ const Todo = ({
           <Title>{data.title}</Title>
           <Div>
             <Text>{`${data.body}`}</Text>
-            <Time>{`Time : ${data.time.substring(0, 2)}시 ${data.time.substring(6)}분`}</Time>
+            <Time>{`Time : ${data.time.substring(0, 2)}시 ${data.time.substring(
+              3,
+              5
+            )}분`}</Time>
           </Div>
           <Icon>
             <FontAwesomeIcon
@@ -106,30 +110,32 @@ const Todo = ({
           </Icon>
         </Form>
       ) : (
-            <Form>
-              <CheckBox></CheckBox>
-              <Title>{`${data.title.substring(0, 5)}...`}</Title>
-              <Text>{`${data.body.substring(0, 25)}...`}</Text>
-              <Icon>
-                <FontAwesomeIcon
-                  icon={faCaretDown}
-                  onClick={() => setIsDetailState(!isDetailState)}
-                />
-              </Icon>
-              <Icon onClick={() => setIsModalState(!isModalState)}>
-                <FontAwesomeIcon icon={faEdit} />
-              </Icon>
-              <Icon onClick={(e) => {
-                e.preventDefault();
-                handleClearOne(`${data.id}`);
-              }}>
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </Icon>
-            </Form>
-          )}
+        <Form>
+          <CheckBox></CheckBox>
+          <Title>{`${data.title.substring(0, 5)}...`}</Title>
+          <Text>{`${data.body.substring(0, 25)}...`}</Text>
+          <Icon>
+            <FontAwesomeIcon
+              icon={faCaretDown}
+              onClick={() => setIsDetailState(!isDetailState)}
+            />
+          </Icon>
+          <Icon onClick={() => setIsModalState(!isModalState)}>
+            <FontAwesomeIcon icon={faEdit} />
+          </Icon>
+          <Icon
+            onClick={(e) => {
+              e.preventDefault();
+              handleClearOne(data.id);
+              updateTodoData();
+            }}
+          >
+            <FontAwesomeIcon icon={faTrashAlt} />
+          </Icon>
+        </Form>
+      )}
     </Container>
   );
 };
 
 export default Todo;
-

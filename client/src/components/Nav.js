@@ -14,7 +14,7 @@ const NavBar = styled.nav`
   display: block;
   position: fixed;
   top: 0%;
-  z-index: 289;
+  z-index: 5;
 `;
 const UserBtn = styled(Link)`
   color: white;
@@ -43,17 +43,13 @@ const HomeBtn = styled.img`
 
 const QuotesWrap = styled.div`
   position: absolute;
+  top: 4px;
   left: 70px;
   line-height: 2.5;
   color: white;
 `;
 
-export default function Nav({
-  isLogin,
-  handleLogout,
-  userData,
-}) {
-  
+export default function Nav({ isLogin, handleLogout, userData }) {
   const [isUserProfileModalVisible, setUserProfileModalVisible] = useState(
     false
   );
@@ -70,7 +66,9 @@ export default function Nav({
               <UserImg
                 useFor={`navBar`}
                 src={logo}
-                handleUserProfileModal={() => setUserProfileModalVisible(!isUserProfileModalVisible)}
+                handleUserProfileModal={() =>
+                  setUserProfileModalVisible(!isUserProfileModalVisible)
+                }
               ></UserImg>
               <QuotesWrap>
                 <Quotes></Quotes>
